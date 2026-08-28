@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: stochastix/api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      STOCKFORGE_LOG_LEVEL: INFO
+      STOCKFORGE_API_KEY: ${STOCKFORGE_API_KEY:-}
+    volumes:
+      - ./artifacts:/app/artifacts
+      - marketdata:/app/data/cache
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dashboard
+    image: stochastix/dashboard:latest
+    ports:
+      - "8501:8501"
+    environment:
+      STOCKFORGE_LOG_LEVEL: INFO
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+      - marketdata:/app/data/cache:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.17.0
+    profiles: [tracking]
+    ports:
+      - "5000:5000"
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0
+    volumes:
+      - mlflowdata:/mlflow
+    restart: unless-stopped
+
+volumes:
+  marketdata:
+  mlflowdata:

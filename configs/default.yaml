@@ -1,0 +1,48 @@
+universe:
+  tickers: [AAPL, MSFT, NVDA, AMZN, GOOGL, META, TSLA, JPM, XOM, SPY]
+  benchmark: SPY
+
+data:
+  start: "2015-01-01"
+  cache_dir: "./data/cache"
+  retry_attempts: 3
+  retry_backoff_seconds: 2.0
+
+features:
+  horizons: [1, 5, 21]
+  warmup_days: 210
+
+model:
+  candidate_names: ["naive", "drift", "elasticnet", "lightgbm", "ensemble"]
+  lightgbm:
+    n_estimators: 500
+    learning_rate: 0.03
+    num_leaves: 31
+    min_child_samples: 40
+    subsample: 0.9
+    colsample_bytree: 0.8
+    random_state: 42
+  elasticnet:
+    alpha: 0.001
+    l1_ratio: 0.2
+
+cv:
+  n_splits: 5
+  min_train_days: 504
+  embargo_days: 25
+
+portfolio:
+  lookback_days: 252
+  risk_free_rate: 0.02
+  max_weight: 0.35
+  delta: 2.5
+  tau: 0.05
+  blend_model_weight: 0.5
+
+backtest:
+  rebalance_days: 21
+  cost_bps: 10.0
+  initial_capital: 100000.0
+
+artifacts_dir: "./artifacts"
+log_level: INFO

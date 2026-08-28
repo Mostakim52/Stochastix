@@ -1,0 +1,18 @@
+FROM python:3.13-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+RUN useradd --create-home --shell /bin/bash forge
+WORKDIR /app
+
+COPY pyproject.toml README.md ./
+COPY src ./src
+RUN pip install --no-cache-dir ".[dashboard]"
+
+COPY configs /app/configs
+USER forge
+
+EXPOSE 8501
+CMD ["streamlit", "run", "/app/src/stockforge/dashboard/app.py", \
+     "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]

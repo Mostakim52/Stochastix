@@ -1,0 +1,84 @@
+name: Weekly model retrain
+
+on:
+  schedule:
+    # Mondays 06:00 UTC, after market data settles from the weekend
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      synthetic:
+        description: Train on synthetic offline data instead of live yfinance pull
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e .
+
+      - name: Try live-data training (may fail without network access to Yahoo)
+        continue-on-error: true
+        id: live
+        run: |
+          stockforge ingest
+          stockforge train
+        env:
+          GIT_SHA: ${{ github.sha }}
+      - name: Decide data mode
+        id: mode
+        run: echo "synthetic=${{ inputs.synthetic == true || steps.live.outcome == 'failure' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Full offline-safe pipeline
+        run: |
+          if [ "${{ steps.mode.outputs.synthetic }}" = "true" ]; then
+            stockforge pipeline --synthetic --capital 100000
+          else
+            stockforge ingest
+            stockforge train
+            stockforge forecast
+            stockforge optimize
+            stockforge backtest
+            stockforge report
+          fi
+        env:
+          GIT_SHA: ${{ github.sha }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-run-${{ github.run_id }}
+          path: |
+            artifacts/models/**/metadata.json
+            artifacts/reports/latest.md
+            artifacts/backtest/metrics.json
+            artifacts/portfolios/latest.json
+          retention-days: 90
+
+      - name: Open PR with refreshed report
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: retrain/report-${{ github.run_id }}
+          title: "Weekly retrain report (${{ github.run_id }})"
+          body: |
+            Automated weekly retrain.
+
+            - Report: `artifacts/reports/latest.md` (also attached as workflow artifact)
+            - Data mode: ${{ steps.mode.outputs.synthetic == 'true' && 'synthetic (live pull unavailable)' || 'live yfinance' }}
+            - Commit: ${{ github.sha }}
+
+            Review the metrics diff before merging.
+          add-paths: |
+            artifacts/**
+          commit-message: "chore(retrain): refresh models & report for ${{ github.run_id }}"

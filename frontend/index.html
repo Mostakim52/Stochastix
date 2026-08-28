@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stochastix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23080B12'/><text x='50' y='68' font-family='monospace' font-size='52' font-weight='bold' fill='%23F5B84B' text-anchor='middle'>Sx</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="hdr">
+      <div class="hdr__brand">
+        <span class="hdr__logo">STOCHASTIX</span>
+        <span class="hdr__sep"></span>
+        <span class="hdr__sub">Terminal</span>
+      </div>
+      <div class="hdr__tape" id="header-tape"></div>
+      <div class="hdr__right">
+        <span class="hdr__badge" id="model-badge">--</span>
+        <span class="hdr__dot"></span>
+        <button class="hdr__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Scrolling tape -->
+    <div class="tape">
+      <div class="tape__track" id="tape-track"></div>
+    </div>
+
+    <!-- Layout -->
+    <div class="layout">
+      <!-- Sidebar -->
+      <nav class="sidebar" id="sidebar">
+        <div class="sidebar__nav">
+          <button class="sidebar__btn active" data-view="overview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Overview</span>
+          </button>
+          <button class="sidebar__btn" data-view="forecasts">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>Forecasts</span>
+          </button>
+          <button class="sidebar__btn" data-view="portfolio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v16M14 4v16"/></svg>
+            <span>Portfolio</span>
+          </button>
+          <button class="sidebar__btn" data-view="backtest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            <span>Backtest</span>
+          </button>
+          <button class="sidebar__btn" data-view="correlations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Correlations</span>
+          </button>
+        </div>
+        <div class="sidebar__foot">
+          <span id="run-badge">run: --</span>
+        </div>
+      </nav>
+
+      <!-- Overlay for mobile -->
+      <div class="overlay" id="overlay"></div>
+
+      <!-- Content -->
+      <main class="content">
+
+        <!-- OVERVIEW -->
+        <section class="view active" id="view-overview">
+          <div class="view__head">
+            <h1>Market <em>Overview</em></h1>
+            <select id="overview-horizon">
+              <option value="1">1 Day</option>
+              <option value="5">5 Days</option>
+              <option value="21" selected>21 Days</option>
+            </select>
+          </div>
+          <div class="kpis" id="kpi-grid"></div>
+          <div class="panel">
+            <div class="panel__label">Normalized Performance</div>
+            <div class="chart-box"><canvas id="overview-chart"></canvas></div>
+          </div>
+          <div class="tbl-wrap" id="overview-table"></div>
+        </section>
+
+        <!-- FORECASTS -->
+        <section class="view" id="view-forecasts">
+          <div class="view__head">
+            <h1><em>Forecast</em> Engine</h1>
+            <select id="forecast-horizon">
+              <option value="1">1 Day</option>
+              <option value="5">5 Days</option>
+              <option value="21" selected>21 Days</option>
+            </select>
+          </div>
+          <div class="split">
+            <div class="tbl-wrap" id="forecast-table"></div>
+            <div class="detail" id="forecast-detail">
+              <div class="detail__head">
+                <h2 id="detail-ticker">--</h2>
+                <span class="tag" id="detail-horizon"></span>
+              </div>
+              <div class="chart-box chart-box--sm"><canvas id="fan-chart"></canvas></div>
+              <div class="detail__meta" id="detail-meta"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section class="view" id="view-portfolio">
+          <div class="view__head">
+            <h1>Portfolio <em>Lab</em></h1>
+            <div class="view__controls">
+              <select id="portfolio-capital">
+                <option value="10000">$10K</option>
+                <option value="50000">$50K</option>
+                <option value="100000" selected>$100K</option>
+                <option value="500000">$500K</option>
+              </select>
+              <label class="toggle">
+                <input type="checkbox" id="bl-toggle">
+                <span class="toggle__track"></span>
+                <span>Black-Litterman</span>
+              </label>
+            </div>
+          </div>
+          <div class="kpis" id="portfolio-kpis"></div>
+          <div class="schemes" id="scheme-grid"></div>
+          <div class="split">
+            <div class="panel">
+              <div class="panel__label">Allocation</div>
+              <div class="chart-box chart-box--sm"><canvas id="allocation-chart"></canvas></div>
+            </div>
+            <div class="panel">
+              <div class="panel__label">Holdings</div>
+              <div class="tbl-wrap" id="weights-table"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel__label">Risk-Return Profile</div>
+            <div class="chart-box"><canvas id="frontier-chart"></canvas></div>
+          </div>
+        </section>
+
+        <!-- BACKTEST -->
+        <section class="view" id="view-backtest">
+          <div class="view__head">
+            <h1><em>Backtest</em> Results</h1>
+          </div>
+          <div class="kpis" id="backtest-kpis"></div>
+          <div class="panel">
+            <div class="panel__label">Equity Curve & Drawdown</div>
+            <div class="chart-box"><canvas id="backtest-chart"></canvas></div>
+          </div>
+          <div class="tbl-wrap" id="backtest-table"></div>
+        </section>
+
+        <!-- CORRELATIONS -->
+        <section class="view" id="view-correlations">
+          <div class="view__head">
+            <h1><em>Correlation</em> Matrix</h1>
+          </div>
+          <div class="panel">
+            <div class="chart-box chart-box--tall"><canvas id="corr-chart"></canvas></div>
+          </div>
+          <div class="kpis" id="corr-kpis"></div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ftr">
+      <span class="ftr__left"><span class="ftr__dot"></span> <span id="status-text">Ready</span></span>
+      <span>v1.0.0</span>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
