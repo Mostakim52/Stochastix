@@ -63,6 +63,7 @@ if FRONTEND_DIR.exists():
     async def dashboard_redirect():
         return FileResponse(FRONTEND_DIR / "index.html")
 
+
 # API router with /api prefix
 api_router = APIRouter(prefix="/api")
 
@@ -114,7 +115,10 @@ def prices(days: int = 252) -> dict:
     df = panel.close.tail(days)
     return {
         "dates": [d.strftime("%Y-%m-%d") for d in df.index],
-        "tickers": {col: [round(float(v), 2) if np.isfinite(v) else None for v in df[col]] for col in df.columns},
+        "tickers": {
+            col: [round(float(v), 2) if np.isfinite(v) else None for v in df[col]]
+            for col in df.columns
+        },
     }
 
 
@@ -125,7 +129,8 @@ def correlations(days: int = 120) -> dict:
     rets = panel.simple_returns().tail(days).dropna(how="all")
     corr = rets.corr()
     tickers = list(corr.columns)
-    matrix = [[round(float(corr.iloc[i, j]), 4) for j in range(len(tickers))] for i in range(len(tickers))]
+    n = len(tickers)
+    matrix = [[round(float(corr.iloc[i, j]), 4) for j in range(n)] for i in range(n)]
     return {"tickers": tickers, "matrix": matrix, "days": days}
 
 

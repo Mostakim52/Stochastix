@@ -13,7 +13,7 @@ import plotly.graph_objects as go
 import streamlit as st
 from plotly.subplots import make_subplots
 
-    st.set_page_config(page_title="Stochastix", layout="wide")
+st.set_page_config(page_title="Stochastix", layout="wide")
 
 ARTIFACTS = Path(os.environ.get("STOCKFORGE_ARTIFACTS_DIR", "artifacts"))
 CACHE = Path(os.environ.get("STOCKFORGE_DATA_CACHE_DIR", "data/cache"))
