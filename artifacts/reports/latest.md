@@ -1,5 +1,5 @@
 # Stochastix Research Report
-_Generated 2026-10-25 09:57 UTC - run `20261025-095718_d049c9`_
+_Generated 2026-10-25 10:34 UTC - run `20261025-103436_2cd30d`_
 
 > **Disclaimer:** educational software. Not investment advice. Markets are close to 
 > efficient; any edge shown in-sample can vanish. Never trade real money on a demo model.
@@ -15,7 +15,7 @@ _Generated 2026-10-25 09:57 UTC - run `20261025-095718_d049c9`_
 | Horizon | Best model | RMSE | Dir. accuracy | Info coeff | Obs |
 |---|---|---|---|---|---|
 | 1d | drift | 0.02382 | 53.0% | +0.000 | 27700 |
-| 5d | drift | 0.05162 | 56.4% | +0.000 | 27660 |
+| 5d | drift | 0.05162 | 56.4% | -0.000 | 27660 |
 | 21d | drift | 0.10648 | 61.7% | +0.000 | 27500 |
 
 ## Forecasts
