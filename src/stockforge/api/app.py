@@ -51,6 +51,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+@app.get("/health")
+async def health_root() -> dict:
+    """Liveness probe for platform health checks (Render, Fly.io, Docker)."""
+    return {"status": "ok", "version": __version__}
+
+
 # Serve frontend static assets
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
