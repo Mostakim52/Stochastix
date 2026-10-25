@@ -1,10 +1,12 @@
 # Render Blueprint for the Stochastix API + dashboard.
 #   Render -> New -> Blueprint -> point at this repo.
+# Models/forecasts/price cache ship in the repo (refreshed weekly by the
+# retrain PR), so no persistent disk is needed; merging that PR auto-deploys.
 services:
   - type: web
     name: stochastix-api
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -e .
     startCommand: uvicorn stockforge.api.app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -15,15 +17,11 @@ services:
         value: INFO
       - key: STOCKFORGE_API_KEY
         sync: false
-    disk:
-      name: model-artifacts
-      mountPath: /opt/render/project/src/artifacts
-      sizeGB: 1
 
   - type: web
     name: stochastix-dashboard
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -e ".[dashboard]"
     startCommand: streamlit run src/stockforge/dashboard/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless=true
     envVars:
