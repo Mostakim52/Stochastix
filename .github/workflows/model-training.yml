@@ -77,6 +77,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: retrain/report-${{ github.run_id }}
+          delete-branch: true
           title: "Weekly retrain report (${{ github.run_id }})"
           body: |
             Automated weekly retrain.
