@@ -17,8 +17,7 @@ permissions:
 
 jobs:
   retrain:
-    # Pinned: ubuntu-latest began migrating to Ubuntu 26 in Oct 2026 and the
-    # pipeline failed on the new image; revisit once the cause is confirmed
+    # Pinned for reproducible weekly runs (ubuntu-latest drifts across images)
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:

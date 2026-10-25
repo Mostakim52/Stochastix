@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -38,7 +38,9 @@ class ModelRegistry:
         self.root.mkdir(parents=True, exist_ok=True)
 
     def new_run(self) -> tuple[str, Path]:
-        stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        # UTC: run ids sort lexicographically to resolve "latest", so they must
+        # come from one clock even when runs are created on different machines
+        stamp = datetime.now(UTC).strftime("%Y%m%d-%H%M%S")
         run_id = f"{stamp}_{uuid.uuid4().hex[:6]}"
         run_dir = self.root / run_id
         run_dir.mkdir(parents=True, exist_ok=False)

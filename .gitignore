@@ -16,16 +16,14 @@ coverage.xml
 htmlcov/
 
 # Project artifacts: committed outputs the live API serves; refreshed weekly
-# by the model-training workflow's report PR. Trained model binaries stay out.
+# by the model-training workflow's report PR. Trained models stay out entirely:
+# the registry resolves "latest" by run-id sort, and a metadata-only stub
+# (files gitignored) would shadow real runs whose joblib files don't exist.
 artifacts/*
 !artifacts/backtest/
 !artifacts/forecasts/
 !artifacts/portfolios/
 !artifacts/reports/
-!artifacts/models/
-artifacts/models/**
-!artifacts/models/**/
-!artifacts/models/**/metadata.json
 
 # Downloaded price cache is committed so deployments serve data without
 # hitting Yahoo at boot; the weekly retrain PR keeps it current
