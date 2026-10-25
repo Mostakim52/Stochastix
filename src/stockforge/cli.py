@@ -84,7 +84,7 @@ def _print_weights(results: dict[str, PortfolioResult], capital: float) -> None:
 @app.command()
 def version() -> None:
     """Print the installed version."""
-    console.print(f"stockforge {__version__}")
+    console.print(f"stochastix {__version__}")
 
 
 @app.command()
@@ -407,6 +407,11 @@ def dashboard(headless: bool = typer.Option(False, "--headless")) -> None:
     if headless:
         cmd.append("--server.headless=true")
     raise typer.Exit(subprocess.call(cmd))
+
+
+def main() -> None:
+    """Console-script entry point (see [project.scripts] in pyproject.toml)."""
+    app()
 
 
 if __name__ == "__main__":

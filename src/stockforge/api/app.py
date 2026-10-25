@@ -78,12 +78,12 @@ def _registry() -> ModelRegistry:
 def _cached_forecasts() -> tuple[dict[int, pd.DataFrame], str]:
     path = Path(_config().artifacts_dir) / "forecasts" / "latest.parquet"
     if not path.exists():
-        raise HTTPException(404, "No forecasts yet. Run `stockforge forecast` first.")
+        raise HTTPException(404, "No forecasts yet. Run `stochastix forecast` first.")
     try:
         raw = pd.read_parquet(path)
     except Exception as exc:  # noqa: BLE001 - reader/writer mismatches etc.
         raise HTTPException(
-            503, f"Forecast artifact unreadable ({exc}). Rerun `stockforge forecast`."
+            503, f"Forecast artifact unreadable ({exc}). Rerun `stochastix forecast`."
         ) from exc
     tables = {int(h): sub.droplevel("horizon") for h, sub in raw.groupby(level="horizon")}
     run = "latest"
@@ -103,7 +103,7 @@ def _panel_or_raise() -> PricePanel:
         return load_panel_from_cache(config.universe.tickers, cache_dir)
     except FileNotFoundError as exc:
         raise HTTPException(
-            404, f"No cached market data ({exc}). Run `stockforge ingest` first."
+            404, f"No cached market data ({exc}). Run `stochastix ingest` first."
         ) from exc
 
 

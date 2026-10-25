@@ -32,8 +32,8 @@ jobs:
         continue-on-error: true
         id: live
         run: |
-          stockforge ingest
-          stockforge train
+          stochastix ingest
+          stochastix train
         env:
           GIT_SHA: ${{ github.sha }}
       - name: Decide data mode
@@ -43,14 +43,14 @@ jobs:
       - name: Full offline-safe pipeline
         run: |
           if [ "${{ steps.mode.outputs.synthetic }}" = "true" ]; then
-            stockforge pipeline --synthetic --capital 100000
+            stochastix pipeline --synthetic --capital 100000
           else
-            stockforge ingest
-            stockforge train
-            stockforge forecast
-            stockforge optimize
-            stockforge backtest
-            stockforge report
+            stochastix ingest
+            stochastix train
+            stochastix forecast
+            stochastix optimize
+            stochastix backtest
+            stochastix report
           fi
         env:
           GIT_SHA: ${{ github.sha }}
@@ -81,4 +81,5 @@ jobs:
             Review the metrics diff before merging.
           add-paths: |
             artifacts/**
+            data/cache/**
           commit-message: "chore(retrain): refresh models & report for ${{ github.run_id }}"

@@ -15,10 +15,21 @@ venv/
 coverage.xml
 htmlcov/
 
-# Project artifacts (models, reports, data caches)
-artifacts/
-data/cache/
-reports/
+# Project artifacts: committed outputs the live API serves; refreshed weekly
+# by the model-training workflow's report PR. Trained model binaries stay out.
+artifacts/*
+!artifacts/backtest/
+!artifacts/forecasts/
+!artifacts/portfolios/
+!artifacts/reports/
+!artifacts/models/
+artifacts/models/**
+!artifacts/models/**/
+!artifacts/models/**/metadata.json
+
+# Downloaded price cache is committed so deployments serve data without
+# hitting Yahoo at boot; the weekly retrain PR keeps it current
+/reports/
 !configs/**/*.yaml
 
 # Environment / secrets
