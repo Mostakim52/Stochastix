@@ -17,7 +17,9 @@ permissions:
 
 jobs:
   retrain:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest began migrating to Ubuntu 26 in Oct 2026 and the
+    # pipeline failed on the new image; revisit once the cause is confirmed
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +28,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - name: Install
-        run: pip install -e .
+        run: pip install -e . -c constraints.txt
 
       - name: Try live-data training (may fail without network access to Yahoo)
         continue-on-error: true
@@ -42,18 +44,24 @@ jobs:
 
       - name: Full offline-safe pipeline
         run: |
-          if [ "${{ steps.mode.outputs.synthetic }}" = "true" ]; then
-            stochastix pipeline --synthetic --capital 100000
+          set -o pipefail
+          mode=$(echo "${{ steps.mode.outputs.synthetic }}" | tr '[:upper:]' '[:lower:]')
+          if [ "$mode" = "true" ]; then
+            stochastix pipeline --synthetic --capital 100000 2>&1 | tee /tmp/pipeline.log
           else
-            stochastix ingest
-            stochastix train
-            stochastix forecast
-            stochastix optimize
-            stochastix backtest
-            stochastix report
+            stochastix ingest 2>&1 | tee -a /tmp/pipeline.log
+            stochastix train 2>&1 | tee -a /tmp/pipeline.log
+            stochastix forecast 2>&1 | tee -a /tmp/pipeline.log
+            stochastix optimize --capital 100000 2>&1 | tee -a /tmp/pipeline.log
+            stochastix backtest 2>&1 | tee -a /tmp/pipeline.log
+            stochastix report --capital 100000 2>&1 | tee -a /tmp/pipeline.log
           fi
         env:
           GIT_SHA: ${{ github.sha }}
+
+      - name: Print pipeline output tail (diagnostics)
+        if: failure()
+        run: tail -n 120 /tmp/pipeline.log || echo "no pipeline log captured"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

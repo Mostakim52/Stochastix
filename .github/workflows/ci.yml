@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [master, main]
   pull_request:
 
 concurrency:
@@ -73,7 +73,7 @@ jobs:
       - name: Install
         run: pip install -e .
       - name: Offline end-to-end training smoke test
-        run: stockforge pipeline --synthetic --quick --capital 10000
+        run: stochastix pipeline --synthetic --quick --capital 10000
       - uses: actions/upload-artifact@v4
         with:
           name: research-report

@@ -7,7 +7,7 @@ services:
     name: stochastix-api
     runtime: python
     plan: free
-    buildCommand: pip install -e .
+    buildCommand: pip install -e . -c constraints.txt
     startCommand: uvicorn stockforge.api.app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
@@ -22,7 +22,7 @@ services:
     name: stochastix-dashboard
     runtime: python
     plan: free
-    buildCommand: pip install -e ".[dashboard]"
+    buildCommand: pip install -e ".[dashboard]" -c constraints.txt
     startCommand: streamlit run src/stockforge/dashboard/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless=true
     envVars:
       - key: PYTHON_VERSION

@@ -1,0 +1,20 @@
+# Known-good versions for the weekly retrain workflow and deployments.
+# The retrain cron and Render builds resolve against this file
+# (pip install -e . -c constraints.txt) so a fresh upstream release can
+# never break a scheduled run overnight. Validate new pins locally with
+# `stochastix pipeline --synthetic --capital 100000` before bumping.
+numpy==2.5.2
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.0
+lightgbm==4.7.0
+yfinance==1.6.0
+joblib==1.5.3
+pyarrow==25.0.1
+pydantic==2.13.4
+PyYAML==6.0.3
+typer==0.27.1
+rich==15.0.0
+fastapi==0.141.1
+uvicorn==0.52.4
+httpx==0.28.1
