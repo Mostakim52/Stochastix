@@ -130,18 +130,54 @@ Best model selected per horizon via purged walk-forward cross-validation.
 
 ## Architecture
 
-```
-yfinance ──▶ Ingest+Cache ──▶ Features ──▶ Walk-forward CV ──▶ Model Selection
-(real data)   parquet         17 indicators  purged+embargoed   best per horizon
-                   │               │               │                 │
-                   ▼               ▼               ▼                 ▼
-              PricePanel      (date,ticker)    OOS preds       ModelRegistry
-                                    │                                  │
-                     forecasts ◀────┘            Black-Litterman ◀─────┤
-                          │                             │              │
-                          ▼                             ▼              ▼
-                    REST API ◀──────────  Portfolio Optimizers   Backtester
-                    Web Dashboard         (6 schemes + HRP)     (cost-aware)
+One pipeline from market data to the live dashboard — data layer in blue, research core in purple, serving in green, automation in amber:
+
+```mermaid
+flowchart TD
+    subgraph OPS ["Entry points"]
+        direction LR
+        RUN["Ways to run it<br/>stochastix CLI · run.py<br/>Monday cron · POST /api/retrain"]
+    end
+
+    subgraph DATA ["Data layer"]
+        direction LR
+        CFG["Config & universe<br/>configs/default.yaml"] --> ING["Ingest & cache<br/>yfinance → parquet<br/>synthetic fallback offline"]
+    end
+
+    subgraph LEARN ["Research core — learn"]
+        direction LR
+        FEAT["Features<br/>17 indicators"] --> CV["Walk-forward CV<br/>purged + 25d embargo"] --> MODELS["Model contest<br/>Naive · Drift · ElasticNet<br/>LightGBM · Ensemble"] --> REG["Model registry<br/>UTC run ids"]
+    end
+
+    subgraph DECIDE ["Research core — decide"]
+        direction LR
+        FC["Forecasts<br/>1 / 5 / 21-day cones"] --> PF["Portfolios<br/>Black-Litterman + 5 schemes"] --> BT["Backtest<br/>out-of-sample · 10 bps"] --> RPT["Research report<br/>latest.md"]
+    end
+
+    subgraph AUTO ["Automation"]
+        direction LR
+        CICD["CI on every push<br/>ruff · mypy · 68 tests"] --> WK["Weekly retrain<br/>Mon 06:00 UTC → report PR"] --> MG["Merge & auto-deploy<br/>Render Blueprint"]
+    end
+
+    subgraph SERVE ["Serving"]
+        direction LR
+        ART["Artifacts in repo<br/>forecasts · portfolios<br/>metrics · price cache"] --> API["FastAPI + dashboard<br/>one uvicorn process"] --> YOU["You<br/>live dashboard · PR review"]
+    end
+
+    OPS --> DATA
+    DATA --> LEARN
+    LEARN --> DECIDE
+    DECIDE --> AUTO
+    AUTO --> SERVE
+
+    classDef data stroke:#3b82f6,stroke-width:1.5px,fill:#3b82f61a
+    classDef research stroke:#a855f7,stroke-width:1.5px,fill:#a855f71a
+    classDef serving stroke:#22c55e,stroke-width:1.5px,fill:#22c55e1a
+    classDef automation stroke:#f59e0b,stroke-width:1.5px,fill:#f59e0b1a
+    class CFG,ING data
+    class FEAT,CV,MODELS,REG,FC,PF,BT,RPT research
+    class ART,API,YOU serving
+    class RUN,CICD,WK,MG automation
 ```
 
 ### Project layout
