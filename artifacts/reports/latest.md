@@ -1,5 +1,5 @@
 # Stochastix Research Report
-_Generated 2026-10-25 10:34 UTC - run `20261025-103436_2cd30d`_
+_Generated 2026-10-26 11:58 UTC - run `20261026-115806_4b806c`_
 
 > **Disclaimer:** educational software. Not investment advice. Markets are close to 
 > efficient; any edge shown in-sample can vanish. Never trade real money on a demo model.
