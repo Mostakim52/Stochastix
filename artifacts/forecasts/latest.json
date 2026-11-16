@@ -1,318 +1,318 @@
 {
   "1": {
-    "as_of": "2026-10-23",
+    "as_of": "2026-11-13",
     "forecasts": [
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 347.73,
-        "lower_95": 332.05,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 348.05,
+        "last_close": 356.27,
+        "lower_95": 340.17,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 356.59,
         "ticker": "AAPL",
-        "upper_95": 364.81
+        "upper_95": 373.8
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 248.0,
-        "lower_95": 236.82,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 248.23,
+        "last_close": 266.66,
+        "lower_95": 254.61,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 266.9,
         "ticker": "AMZN",
-        "upper_95": 260.18
+        "upper_95": 279.78
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 320.21,
-        "lower_95": 305.77,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 320.5,
+        "last_close": 295.77,
+        "lower_95": 282.41,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 296.03,
         "ticker": "GOOGL",
-        "upper_95": 335.94
+        "upper_95": 310.32
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 331.58,
-        "lower_95": 316.63,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 331.88,
+        "last_close": 346.19,
+        "lower_95": 330.55,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 346.5,
         "ticker": "JPM",
-        "upper_95": 347.87
+        "upper_95": 363.22
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 642.62,
-        "lower_95": 613.65,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 643.2,
+        "last_close": 641.69,
+        "lower_95": 612.7,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 642.26,
         "ticker": "META",
-        "upper_95": 674.18
+        "upper_95": 673.25
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 524.51,
-        "lower_95": 500.86,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 524.99,
+        "last_close": 523.88,
+        "lower_95": 500.21,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 524.35,
         "ticker": "MSFT",
-        "upper_95": 550.27
+        "upper_95": 549.65
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 210.96,
-        "lower_95": 201.45,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 211.15,
+        "last_close": 162.85,
+        "lower_95": 155.49,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 163.0,
         "ticker": "NVDA",
-        "upper_95": 221.32
+        "upper_95": 170.86
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 759.97,
-        "lower_95": 725.71,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 760.66,
+        "last_close": 754.37,
+        "lower_95": 720.29,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 755.05,
         "ticker": "SPY",
-        "upper_95": 797.29
+        "upper_95": 791.48
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 372.22,
-        "lower_95": 355.44,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 372.56,
+        "last_close": 390.22,
+        "lower_95": 372.59,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 390.57,
         "ticker": "TSLA",
-        "upper_95": 390.5
+        "upper_95": 409.42
       },
       {
         "direction": "up",
         "expected_return_pct": 0.09,
-        "last_close": 183.21,
-        "lower_95": 174.95,
-        "predicted_log_return": 0.000908,
-        "predicted_price_h1": 183.38,
+        "last_close": 170.59,
+        "lower_95": 162.88,
+        "predicted_log_return": 0.000894,
+        "predicted_price_h1": 170.74,
         "ticker": "XOM",
-        "upper_95": 192.21
+        "upper_95": 178.98
       }
     ],
     "horizon": 1
   },
   "21": {
-    "as_of": "2026-10-23",
+    "as_of": "2026-11-13",
     "forecasts": [
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 347.73,
-        "lower_95": 286.91,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 354.42,
+        "expected_return_pct": 1.89,
+        "last_close": 356.27,
+        "lower_95": 293.87,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 363.01,
         "ticker": "AAPL",
-        "upper_95": 437.81
+        "upper_95": 448.43
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 248.0,
-        "lower_95": 204.62,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 252.77,
+        "expected_return_pct": 1.89,
+        "last_close": 266.66,
+        "lower_95": 219.95,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 271.71,
         "ticker": "AMZN",
-        "upper_95": 312.24
+        "upper_95": 335.64
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 320.21,
-        "lower_95": 264.2,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 326.37,
+        "expected_return_pct": 1.89,
+        "last_close": 295.77,
+        "lower_95": 243.96,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 301.37,
         "ticker": "GOOGL",
-        "upper_95": 403.16
+        "upper_95": 372.28
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 331.58,
-        "lower_95": 273.58,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 337.96,
+        "expected_return_pct": 1.89,
+        "last_close": 346.19,
+        "lower_95": 285.55,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 352.74,
         "ticker": "JPM",
-        "upper_95": 417.47
+        "upper_95": 435.74
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 642.62,
-        "lower_95": 530.22,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 654.98,
+        "expected_return_pct": 1.89,
+        "last_close": 641.69,
+        "lower_95": 529.29,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 653.83,
         "ticker": "META",
-        "upper_95": 809.09
+        "upper_95": 807.68
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 524.51,
-        "lower_95": 432.77,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 534.6,
+        "expected_return_pct": 1.89,
+        "last_close": 523.88,
+        "lower_95": 432.12,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 533.79,
         "ticker": "MSFT",
-        "upper_95": 660.38
+        "upper_95": 659.39
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 210.96,
-        "lower_95": 174.06,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 215.02,
+        "expected_return_pct": 1.89,
+        "last_close": 162.85,
+        "lower_95": 134.33,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 165.93,
         "ticker": "NVDA",
-        "upper_95": 265.61
+        "upper_95": 204.97
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 759.97,
-        "lower_95": 627.04,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 774.58,
+        "expected_return_pct": 1.89,
+        "last_close": 754.37,
+        "lower_95": 622.24,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 768.65,
         "ticker": "SPY",
-        "upper_95": 956.84
+        "upper_95": 949.5
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 372.22,
-        "lower_95": 307.12,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 379.38,
+        "expected_return_pct": 1.89,
+        "last_close": 390.22,
+        "lower_95": 321.87,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 397.6,
         "ticker": "TSLA",
-        "upper_95": 468.64
+        "upper_95": 491.16
       },
       {
         "direction": "up",
-        "expected_return_pct": 1.92,
-        "last_close": 183.21,
-        "lower_95": 151.16,
-        "predicted_log_return": 0.019046,
-        "predicted_price_h21": 186.73,
+        "expected_return_pct": 1.89,
+        "last_close": 170.59,
+        "lower_95": 140.71,
+        "predicted_log_return": 0.018746,
+        "predicted_price_h21": 173.82,
         "ticker": "XOM",
-        "upper_95": 230.67
+        "upper_95": 214.72
       }
     ],
     "horizon": 21
   },
   "5": {
-    "as_of": "2026-10-23",
+    "as_of": "2026-11-13",
     "forecasts": [
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 347.73,
-        "lower_95": 315.52,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 349.33,
+        "expected_return_pct": 0.45,
+        "last_close": 356.27,
+        "lower_95": 323.19,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 357.87,
         "ticker": "AAPL",
-        "upper_95": 386.76
+        "upper_95": 396.27
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 248.0,
-        "lower_95": 225.03,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 249.14,
+        "expected_return_pct": 0.45,
+        "last_close": 266.66,
+        "lower_95": 241.9,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 267.86,
         "ticker": "AMZN",
-        "upper_95": 275.83
+        "upper_95": 296.6
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 320.21,
-        "lower_95": 290.55,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 321.68,
+        "expected_return_pct": 0.45,
+        "last_close": 295.77,
+        "lower_95": 268.31,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 297.1,
         "ticker": "GOOGL",
-        "upper_95": 356.15
+        "upper_95": 328.98
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 331.58,
-        "lower_95": 300.87,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 333.1,
+        "expected_return_pct": 0.45,
+        "last_close": 346.19,
+        "lower_95": 314.05,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 347.75,
         "ticker": "JPM",
-        "upper_95": 368.79
+        "upper_95": 385.06
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 642.62,
-        "lower_95": 583.09,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 645.57,
+        "expected_return_pct": 0.45,
+        "last_close": 641.69,
+        "lower_95": 582.11,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 644.58,
         "ticker": "META",
-        "upper_95": 714.74
+        "upper_95": 713.74
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 524.51,
-        "lower_95": 475.92,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 526.92,
+        "expected_return_pct": 0.45,
+        "last_close": 523.88,
+        "lower_95": 475.24,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 526.24,
         "ticker": "MSFT",
-        "upper_95": 583.38
+        "upper_95": 582.7
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 210.96,
-        "lower_95": 191.42,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 211.93,
+        "expected_return_pct": 0.45,
+        "last_close": 162.85,
+        "lower_95": 147.73,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 163.58,
         "ticker": "NVDA",
-        "upper_95": 234.64
+        "upper_95": 181.13
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 759.97,
-        "lower_95": 689.57,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 763.46,
+        "expected_return_pct": 0.45,
+        "last_close": 754.37,
+        "lower_95": 684.33,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 757.76,
         "ticker": "SPY",
-        "upper_95": 845.26
+        "upper_95": 839.07
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 372.22,
-        "lower_95": 337.74,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 373.93,
+        "expected_return_pct": 0.45,
+        "last_close": 390.22,
+        "lower_95": 353.99,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 391.97,
         "ticker": "TSLA",
-        "upper_95": 414.0
+        "upper_95": 434.03
       },
       {
         "direction": "up",
-        "expected_return_pct": 0.46,
-        "last_close": 183.21,
-        "lower_95": 166.24,
-        "predicted_log_return": 0.004581,
-        "predicted_price_h5": 184.05,
+        "expected_return_pct": 0.45,
+        "last_close": 170.59,
+        "lower_95": 154.75,
+        "predicted_log_return": 0.004486,
+        "predicted_price_h5": 171.36,
         "ticker": "XOM",
-        "upper_95": 203.77
+        "upper_95": 189.74
       }
     ],
     "horizon": 5
